@@ -1,0 +1,31 @@
+{
+  "name": "authentications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --setupFiles dotenv/config -i --coverage",
+    "test:watch": "jest --watchAll --setupFiles dotenv/config -i",
+    "migrate:test": "sequelize db:migrate --env test",
+    "migrate:test-undo": "sequelize db:migrate:undo  --env test",
+    "seed:test": "npx sequelize-cli db:seed:all --env test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "instances-container": "^2.0.6",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.8",
+    "sequelize-cli": "^6.5.2"
+  }, 
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "supertest": "^6.3.1"
+  }
+}
