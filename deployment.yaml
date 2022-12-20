@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: authentications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: authentications
+  template:
+    metadata:
+      name: authentications
+      labels:
+        name: authentications
+        app: backend
+    spec:
+      containers:
+        - name: authentications
+          image: raihany4hy4/authentications:master
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: users-postgres-env-secret
+            - secretRef:
+                name: access-token-env-secret
+            - secretRef:
+                name: refresh-token-env-secret
+          ports:
+            - containerPort: 3000
+          env: 
+            - name: PORT
+              value: "3000"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentications-service
+spec:
+  selector:
+    name: authentications
+  ports:
+    - port: 3000
+      targetPort: 3000
