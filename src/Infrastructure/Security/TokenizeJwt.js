@@ -12,6 +12,7 @@ class TokenizeJwt extends Tokenize{
             const token = this._jwt.sign({
                 id_user, 
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                iss: 'testApp'
             }, process.env.ACCESS_TOKEN_KEY );
 
             resolve(token)
@@ -23,6 +24,7 @@ class TokenizeJwt extends Tokenize{
             const token = this._jwt.sign({
                 id_user, 
                 exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 30),
+                iss: 'testApp'
             }, process.env.REFRESH_TOKEN_KEY );
             
             resolve(token)
